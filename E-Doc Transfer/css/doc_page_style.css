@@ -1,0 +1,135 @@
+.header
+{
+    padding-bottom: 1rem;
+    margin-bottom: 0px;  
+    border-bottom: 1px solid #000000 !important;
+}
+
+body
+{
+
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.table
+{
+    text-align: center;
+    width: 100%;
+    border: 10px;
+    border-width: 5px;
+}
+
+.docName
+{
+    text-align: center;
+}
+
+.data
+{
+    padding: 10px 0px 20px 20px;
+    border-bottom: 1px solid #979393 !important;
+    color: #2b2828;
+    font-size: large;
+}
+
+label
+{
+    padding-right: 2%;
+}
+
+.f
+{
+    float: right;
+}
+
+#issue-doc
+{
+    cursor: pointer;
+    color: #8a7f7f;
+}
+
+#shareDoc:hover
+{
+
+    color: #fff !important;
+    background-color: #007bff;
+    border-radius: .50rem;
+    padding: .5rem 1rem;
+}
+
+.nav-link
+{
+    border-radius: .25rem;
+    padding: .5rem 0.5rem;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    background-color: #007bff;
+    border-radius: .25rem;
+    padding: .5rem 0.5rem;
+}
+
+.check-box
+{
+    float: right;
+}
+
+.table_head
+{
+    float: right;
+}
+
+.btn
+{
+    border-bottom: 1px solid #8a7f7f !important;
+}
+
+.d{
+    padding-left: 2rem;
+}
+
+#btn1
+{
+    cursor: pointer;
+    background-color: rgba(206, 201, 201, 0.836);
+    font-size: 14px;
+    border-radius: .50rem;
+    padding: .4rem 1rem;
+    margin: 2px 0px 8px 0px;
+    box-shadow: 0 0 10px rgb(90 70 87 / 12%);
+}
+
+#btn2
+{
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.2rem;
+    background: none;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+h3
+{
+    margin-left: 5%;
+}
+
+.signOut_btn
+{
+    float: right;
+}
+
+.shareDoc
+{
+    float: right;
+    cursor: pointer;
+    background-color: rgba(206, 201, 201, 0.836);
+    font-size: medium;
+    border-radius: .50rem;
+    padding: .5rem 1rem;
+    margin: 2px 80px 35px 0px;
+    box-shadow: 0 0 10px rgb(90 70 87 / 12%);
+}
