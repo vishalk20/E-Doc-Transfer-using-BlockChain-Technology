@@ -28,19 +28,51 @@ var tableName;
 var adhar_Mo_No;
 var orgID;
 var ckBox;
+var sqlData;
+var temp=0;
 
 var hash;
 const loadIPFS = async(img) => {
-  console.log(typeof(img));
-  console.log(img);
+  //console.log(typeof(img));
+  //console.log(img);
     const filesAdded = await ipfs.add(img);
     console.log(filesAdded);
-    hash = filesAdded.cid;
-    console.log(filesAdded.cid);
-    loadBlockchainData();
-    return filesAdded;
+    hash = filesAdded.path;
+    console.log("File Hash = "+filesAdded.path);
+
+
+    var sql1='SELECT docImage FROM `orgStoredDoc` where docImage=? and orgID=?';
+
+    connection.query(sql1,[hash,orgID], function (err, data) {
+      console.log("This is ipfs check = "+data[0]);
+      if(data[0] == undefined)
+      {
+        storeHash();
+        console.log("This is External doc name"+sqlData[ckBox[temp]-1].docName+"\nThis is External temp = "+temp);
+        loadBlockchainData();
+      }
+      else
+      {
+        console.log("Document already Shared");
+      }
+  
+      //alert("Document Shared Successfully");
+    });
+
+    //return filesAdded;
   //return filesAdded[0];
 };
+
+function storeHash()
+{
+  var sql = "INSERT INTO orgStoredDoc VALUES(?,?,?,?)"
+
+  connection.query(sql,[orgID,sqlData[ckBox[temp]-1].ID,sqlData[ckBox[temp]-1].docName,hash], function (err, data) {
+    if (err) throw err;
+    temp++;
+    //alert("Document Shared Successfully");
+  });
+}
 
 async function loadBlockchainData()
 {
@@ -54,7 +86,7 @@ async function loadBlockchainData()
   const memeHash = await contract.methods.get().call()
   //console.log("MemeHash = "+memeHash);
   await contract.methods.set(hash).send({ from: ganacheAccounts[0] }).then((r) => {
-    alert("Successfull");
+    console.log("Uploaded to blockchain");
   })
 }
 
@@ -79,10 +111,12 @@ module.exports.sharedDoc = function(req, res)
         
         if(ckBox!=undefined)
         {
+          sqlData = data;
           alert("Document Shared Successfully ");
 
           for (let index = 0; index < ckBox.length; index++) {
           //console.log(ckBox[index]-1);
+          //temp = index;
           console.log(data[ckBox[index]-1].docName);
           const buf = Buffer.from(data[ckBox[index]-1].docImage);
           console.log("Doc Data ####\n"+data[ckBox[index]-1].docImage.length);
@@ -103,13 +137,7 @@ module.exports.sharedDoc = function(req, res)
 
 
 
-          var sql = "INSERT INTO orgStoredDoc VALUES(?,?,?,?)"
 
-          connection.query(sql,[orgID,data[ckBox[index]-1].ID,data[ckBox[index]-1].docName,data[ckBox[index]-1].docImage], function (err, data) {
-            if (err) throw err;
-
-            //alert("Document Shared Successfully");
-          });
 
           }
         }
@@ -129,17 +157,22 @@ module.exports.sharedDoc = function(req, res)
 
         if(ckBox!=undefined)
         {
+          sqlData = data;
           for (let index = 0; index < ckBox.length; index++) {
+            temp = index;
           //console.log(ckBox[index]-1);
           console.log(data[ckBox[index]-1].docName);
 
-            var sql = "INSERT INTO orgStoredDoc VALUES(?,?,?,?)"
+
+          loadIPFS(data[ckBox[index]-1].docImage);
+
+            /* var sql = "INSERT INTO orgStoredDoc VALUES(?,?,?,?)"
 
             connection.query(sql,[orgID,data[ckBox[index]-1].ID,data[ckBox[index]-1].docName,data[ckBox[index]-1].docImage], function (err, data) {
               if (err) throw err;
 
               alert("Document Shared Successfully");
-            });
+            }); */
 
           }
         }
