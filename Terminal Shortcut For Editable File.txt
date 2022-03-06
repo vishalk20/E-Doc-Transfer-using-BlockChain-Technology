@@ -1,0 +1,117 @@
+  ##	TO KNOW WHICH MYSQL IS ALREADY INSTALLED IN SYSTEM ------THIS GIVES ERROR WHEN INSTALLING THE MYSQL
+
+			dpkg -l|egrep mysql\|mariadb
+
+  ##	TO EDIT THE UN-EDITABLE FILE 
+		
+			sudo gedit -s sources.list
+
+  ##	TO REMOVE ALL STARTING WITH .....
+
+			rm -f mysql*			// It is worked when it is directory
+
+  ##	TO REMOVE SPECIFIC FILE
+
+			rm -f FileName			// It is worked when it is directory
+
+  ##	TO REMOVE NO-DIRECTORY FILE
+
+			rm -r FileName
+
+
+
+
+  ##	FOR UNINSTALL MONGODB 
+
+	first reinstall it and then uninstall it
+
+			apt-get --reinstall install mongodb
+
+			sudo apt-get purge mongodb mongodb-clients mongodb-server mongodb-dev
+
+			sudo apt-get purge mongodb-10gen
+
+			sudo apt-get autoremove
+
+
+
+  ##	TO CREATE A DIRECTORY USING TERMINAL
+
+			sudo mkdir /location/filename
+
+			eg.  sudo mkdir /home/user/newFolder
+
+
+  ##	TO START ORACLE XE
+
+			sudo service oracle-xe status
+
+			sudo service oracle-xe stop
+
+			sudo service oracle-xe start
+
+				sqlplus sys as sysdba
+
+					password is 1234
+
+						user is root
+
+
+  ##	TO START XAMPP SERVER
+	
+			sudo /opt/lampp/lampp start
+
+			Xampp Location --> cd /opt/lampp/     and then ls    -->  i.e.  --> manager-linux-x64.run
+
+  ##	TO OPEN THE XAMPP SOFTWARE
+
+			cd /opt/lampp$		sudo chmod 755 manager-linux-x64.run
+			cd /opt/lampp$		sudo ./manager-linux-x64.run
+
+
+  ##	TO START AND STOP MYSQL SERVER
+
+			sudo mysql -u root -p
+
+			pass - 1234
+
+
+			sudo /etc/init.d/mysql stop
+						OR
+			sudo service mysql stop
+			sudo killall -KILL mysql mysqld_safe mysqld
+			sudo /etc/init.d/mysql start
+						OR
+			sudo service mysql start
+
+
+  ##	TO START AND STOP APACHE2 SERVER
+
+			sudo /etc/init.d/apache2 stop
+						OR
+			sudo service apache2 stop
+
+
+
+  ##	TO CHECK THE MYSQL SERVICE
+
+			systemctl status mysql.service
+					OR
+			journalctl -xe
+
+	##	To change mysql previlages
+
+			show databases;
+			use mysql;
+			show tables;
+			select user,host,plugin from mysql.user;
+
+
+
+				sudo apt-get install ntp
+
+				sudo ntpd -qg
+
+
+
+

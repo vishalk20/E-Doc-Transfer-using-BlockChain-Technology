@@ -1,0 +1,57 @@
+TO RUN NODE FOR RUNTIME ENVIRONMENT
+
+	npm run dev
+
+
+TO INSTALL REQUIRED PACKAGES
+
+	npm i nodemon
+	npm i mysql
+	npm i express
+	npm i node-notifier
+	npm i connect-flash
+
+To initialize with ganache type in cmd
+
+	truffle config
+	truffle deploy
+
+Main file is test.js
+First Stop mysql/apachi server
+
+	sudo /etc/init.d/apache2 stop
+	sudo /etc/init.d/mysql stop
+
+Start Xampp Server
+
+	sudo /opt/lampp/lampp start
+
+Then type npm run dev to start node server and then
+	
+	1. type ipfs daemon on cmd
+	2. open ganache
+	3. type npm run dev
+			in the project directory where node modules folder is available
+
+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
+
+type localhost/3000 in browser to run E-Doc Project
+
+
+
+
+For Solving This kind of error
+	Error: listen EADDRINUSE: address already in use :::4200
+		sudo pkill node
+
+		sudo lsof -i :3000
+		kill -9 {PID}
+
+
+				sudo apt-get install ntp
+
+
+				sudo ntpd -qg
+
+
+
