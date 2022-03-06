@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>News - E-Doc</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link href="./../css/doc_page_style.css" rel="stylesheet" type="text/css" media="all"/>
 	<link rel="shortcut icon" href="images/E Doc Image.png" type="image/x-icon">
 </head>
 <body>
@@ -49,29 +50,62 @@
 	<div id="contents">
 		<div class="clearfix">
 			<div class="sidebar">
-				<div>
-					<h2>Recent News</h2>
-					<p>
-						This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.
-					</p>
-					<p>
-						You can remove any link to our website from this website template, you're free to use this website template without linking back to us.
-					</p>
-					<p>
-						If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
-					</p>
-				</div>
-				<div>
-					<h2>Client Testimonials</h2>
-					<p>
-						&ldquo;The best family lawyers in the city so far. Me and my ex-wife didn’t have any<br> problems settling the terms and agreement. Everything went so smoothly. We’re both very happy.&rdquo; <span>- Jared Greene</span>
-					</p>
+				<div class="boxplot">
+					<form class="message1" method="POST" action="/search_doc">
+						<h2>View Customer Document's</h2>
+						<p></p>
+						<p>
+							<label>Adhar Number *</label><br>
+							<input class="label1" type="tel" maxlength="12" onkeypress="javascript:return isNumber(event)" placeholder="Enter Adhar Number" value="" required name="adharno">
+						</p>
+						<p>
+							<input class="search_btn" type="submit" placeholder="" value="Search">
+						</p><p></p>
+					</form>
+				</div><br><br>
+				<div class="boxplot">
+					<h2>Upload Document</h2>
+					 <form class="message1" action="/uploadDoc" method="post" enctype="multipart/form-data">
+						<p>
+							<label>Adhar Number *</label><br>
+							<input class="label1" type="tel" maxlength="12" name="adhar" onkeypress="javascript:return isNumber(event)" placeholder="Enter adhar number" required><br><br>
+							<label>File Name *</label><br>
+							<input class="label1" type="text" placeholder="Enter name" name="filename" required><br><br>
+							<label>Select File *</label><br>
+							<input class="label1" type="file" placeholder="upload file" name="avatar" id="f1" value="" required>
+						
+							<input class="search_btn" type="submit" placeholder="" value="Upload">
+						</p><p></p>
+					</form> 
 				</div>
 			</div>
 			<div class="main">
-				<h1>News</h1>
+				<h1>Document's</h1>
 				<ul class="news">
-					<li>
+					<%
+						if(userData!=null)
+						{
+							if(userData.length!=0){
+							var i=1;
+							userData.forEach(function(data){
+							%>
+							<div class="data">
+								<label><%=i %></label>
+								<label style="padding-left: 25px;"><%=data.docName %></label>
+								
+								<label><label class="f"><a href="/viewDoc/<%= data.docImage %>" target="_blank">View</a></label>
+								
+								<%#  This is a comment   <label><a onclick=myFunction()>click me</a></label>%>
+								
+								
+								
+							</div>
+							<%  i++; }) %>
+							<% }
+						}
+						else{%><%="Please enter adhar number to view document's! / No Document's to view."%><%}
+					%>
+				<!--	<li>
 						<div class="box">
 							<img src="images/bride-sideview.jpg" alt="Img" height="245" width="213">
 						</div>
@@ -109,7 +143,7 @@
 							This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
 						</p>
 						<a href="singlepost.html" class="more">Read More</a>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 		</div>
@@ -153,5 +187,14 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		function isNumber(evt) {
+			var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+			if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+				return false;
+
+			return true;
+		}
+	</script>
 </body>
 </html>

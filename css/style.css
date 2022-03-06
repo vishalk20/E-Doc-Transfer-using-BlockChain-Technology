@@ -282,6 +282,10 @@ p a:hover {
 	background-position: left top;
 	background-repeat: repeat-y;
 }
+.search_btn
+{
+	cursor: pointer;
+}
 .testimonial {
 	float: right;
 	width: 260px;

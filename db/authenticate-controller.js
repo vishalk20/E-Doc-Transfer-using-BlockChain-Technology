@@ -8,8 +8,8 @@ const session = require("express-session");
 
 module.exports.authenticate = function(req, res)
 { 
-    console.log(req.session.Username);
-    console.log("Password = "+req.body.email);
+    //console.log(req.session.Username);
+    //console.log("Password = "+req.body.email);
     const email=req.body.email;
     const password=req.body.password;
   
@@ -20,12 +20,12 @@ module.exports.authenticate = function(req, res)
     connection.query(sql2, [email], function (error, results2, fields) {
       if (error) 
       {
-        console.log(error);
+        //console.log(error);
       }
       else
       {
-        console.log("successfully Decrypt");
-        console.log(results2[0]);
+        //console.log("successfully Decrypt");
+        //console.log(results2[0]);
       }
     });
 
@@ -39,7 +39,7 @@ module.exports.authenticate = function(req, res)
       }
       else
       {
-        console.log(results[0]);
+        //console.log(results[0]);
         if(results.length >0)
         {
             if(password==results[0].password)
@@ -48,12 +48,12 @@ module.exports.authenticate = function(req, res)
               req.session.orgid=results[0].orgID;
               req.session.flag=true;
               if(req.session.Username)
-              console.log("**********Login Session = "+req.session.Username);
+              //console.log("**********Login Session = "+req.session.Username);
               notifier.notify("Login Successfully");
               //alert("Login Successfully");
               //res.redirect("./../digilocker_login_page.html");
               
-              //res.render('view_customer_documents', { title: 'User List'});
+              //res.render('view_customer_documents', { title: 'User List', userData: null});
               res.redirect('/userLogin');
               //res.redirect("./../digilocker_login_page.html");
             }
@@ -75,11 +75,11 @@ module.exports.authenticate = function(req, res)
     connection.query("DROP TABLE temp", function (error, fields) {
       if (error) 
       {
-        console.log(error);
+        //console.log(error);
       }
       else
       {
-        console.log("successfully Deleted");
+        //console.log("successfully Deleted");
       }
     });
 }

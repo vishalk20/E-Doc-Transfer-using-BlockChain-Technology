@@ -8,12 +8,18 @@ const alert      = require('alert');
 const registerController        = require("./db/register-controller");
 const authenticateController    = require("./db/authenticate-controller");
 const adharAuth                 = require("./db/adharAuth");
+const searchDoc                 = require("./db/search_documents");
 const viewDoc                   = require("./db/viewDoc");
 const shareDocToOrg             = require("./db/shareDocToOrg");
+const uploadDoc                 = require("./db/uploadDoc");
 const session                   = require('express-session')
+var multer  = require('multer');
+var upload = multer()
+
+
 //const Login = require("./demo_db_connection");
 
-const port        = process.env.PORT || 3001;
+const port        = process.env.PORT || 3000;
 const static_path = path.join(__dirname, "./")
 
 app.set('view engine', 'ejs'); 
@@ -52,7 +58,9 @@ app.get("/sign_in", (req, res) => {
 
 app.get("/userLogin", (req, res) => {
     if(req.session.Username!=undefined)
-        res.render("view_customer_documents");
+    {
+        res.render("view_customer_documents", { title: 'User List', userData: null});
+    }
     else res.render('sign_in');
 });
 
@@ -67,7 +75,7 @@ app.get("/adhar_Auth_logout", (req, res) => {
       
     if(req.session.Username!=undefined)
     {
-        res.render("view_customer_documents");
+        res.render("view_customer_documents", { title: 'User List', userData: null});
     }
     else res.render('sign_in');
 });
@@ -93,7 +101,7 @@ app.get("/adharAuth/sign_in", (req, res) => {
         // cannot access session here
       })
       //console.log("This is sign in session after destroy = "+req.session.Username)
-    res.render("view_customer_documents");
+    res.render("view_customer_documents", { title: 'User List', userData: null});
 });
  */
 /* app.get("/viewImage/:SrNo:databaseID", (req, res) => {
@@ -105,6 +113,13 @@ app.get("/adharAuth/sign_in", (req, res) => {
 
 app.get("/viewImage/:databaseID:SrNo",viewDoc.view);
 
+app.get("/viewDoc/:hash", (req,res) => {
+    //console.log("Hash = "+req.params.hash);
+    if(req.session.Username==undefined)
+        res.render("close_tab");
+    else res.render("view_ipfs_img", { title: 'User List', userData: req.params.hash})
+})
+
 app.get("/viewUpDoc/:databaseID:SrNo",viewDoc.viewUpDoc);
 
 app.post("/sharedDoc/:orgID/:tableName/:adhar",shareDocToOrg.sharedDoc);
@@ -113,6 +128,7 @@ app.post("/sharedDoc/:orgID/:tableName/:adhar",shareDocToOrg.sharedDoc);
 app.get("/digilocker_login_page", (req, res) => {      
     if(req.session.Username!=undefined)
     {
+        req.session.flag=true;
     	res.render("digilocker_login_page");
     }
     else res.redirect('/sign_in');
@@ -123,7 +139,7 @@ app.get("/org_view_page", (req,res) => {
 })
 
 /* app.get("/view_customer_doc", (req,res) => {
-    res.render("view_customer_documents");
+    res.render("view_customer_documents", { title: 'User List', userData: null});
 }) */
 
 app.post("/register", async(req, res) =>{
@@ -146,6 +162,12 @@ app.post("/httpPostRequest", (req, res) => {
     res.send("Welcome");
 });
 
+/* app.post("/uploadDoc", upload.single('avatar'), (req, res) => {
+    console.log(req.file);
+    alert("successfully call http request");
+    res.send("Welcome");
+}); */
+
 app.post("/authenticate-control", (req, res) => {
     res.render("/authenticate-controller");
 });
@@ -154,6 +176,8 @@ app.post("/authenticate-controller",authenticateController.authenticate);
 app.post("/adharAuth",adharAuth.auth);
 app.get("/adharAuth1",adharAuth.auth1);
 app.get("/adharAuth2",adharAuth.auth2);
+app.post("/search_doc",searchDoc.search);
+app.post("/uploadDoc",upload.single('avatar'),uploadDoc.uploadDoc);
 
 app.listen(port, () => {
     console.log(`Server is running at port no ${port}`);

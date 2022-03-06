@@ -39,6 +39,31 @@ label
     padding-right: 2%;
 }
 
+.boxplot
+{
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    padding-left: 1.5rem;
+    text-align: center;
+}
+
+.message1 input[type='text'],input[type='tel'] {
+	height: 24px;
+	margin: 0 0 18px;
+	padding: 0 4px;
+	border-radius: 5px;
+}
+
+.label1
+{
+    margin-top: 0.5rem;
+}
+
+#f1
+{
+    padding-left: 1.8rem;
+    margin-bottom: 1.2rem;
+}
+
 .f
 {
     float: right;
