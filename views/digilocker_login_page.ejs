@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>DigiLocker Login Page</title>
+<!-- Custom Theme files -->
+<link href="css/digilocker_style.css" rel="stylesheet" type="text/css" media="all"/>
+
+<!--Google Fonts-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!--Google Fonts-->
+
+<link rel="shortcut icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+<!--login start here-->
+
+<div class="image">
+	<a>
+		<img  src="images/satya.png" style="width:3.5%; border-right: 1px solid #eee; padding-right: 6px;"  class="img1"/>
+		<img  src="images/digi.png" style="width:20%;" class="img2"/>
+	</a>
+</div>
+
+	<div class="login">
+		<div class="card-body">
+			<h2><b>Sign In to your account!</b></h2>
+			<a class=" text-sm-center nav-link active" id="pills-part-a-tab" data-toggle="pill" role="tab" aria-controls="pills-part-a" aria-selected="true" style="cursor:pointer;">Mobile/Aadhaar</a>
+			<form action="/adharAuth"  method="post">
+				<input class="lock-active" type="tel" placeholder="Aadhaar/Mobile Number*" maxlength="12" onkeypress="javascript:return isNumber(event)" name="adhar" required/>
+				
+				<label>Enter your registered Aadhaar or Mobile number</label><br>
+				
+				<br>
+					<input class="lock-active" type="password" placeholder="6 digit security PIN*" maxlength="6" onkeypress="javascript:return isNumber(event)" autocomplete="off" max="5" name="security_pin"/>
+				
+				<div class="login-bwn">
+					<input type="submit" value="Sign In" />
+			</form>
+				</div>
+			</div>
+  		</div>
+	</div>
+<script>
+	//alert("Login Successfully");
+
+	function fn()
+	{
+		alert("danger");
+		var request = new XMLHttpRequest();
+		request.open('POST',"/db/adharAuth");
+	}
+
+	function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+        if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+            return false;
+
+        return true;
+	}
+	
+</script>
+
+<!--login end here-->
+</body>
+</html>

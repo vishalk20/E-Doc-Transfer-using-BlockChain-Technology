@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DigiLocker Files</title>
+  <link rel="shortcut icon" type="image/png" href="./../images/logo.png">
+  <link href="./../css/doc_page_style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<body>
+        <header class="header">
+            <div class="signOut_btn"><a href="./../adhar_Auth_logout"><button id="btn1">Sign Out</button></a></div>
+            <img  src="./../images/digi.png" style="width:20%;" class="img2"/>
+        </header>
+    <form action="/sharedDoc/<%=orgID%>/<%='digiDoc'%>/<%=adhar_Mo_No%>" method="POST">
+        <div class="table-row">
+            <div class="btn">
+                <h3><a aria-selected="true" href="/adharAuth2" class="nav-link" style="text-decoration: none;" id="issue-doc" onclick="BoldText(this);">Issued Document</a>
+                <a aria-selected="false" href="/adharAuth1" style="font-weight: lighter; text-decoration: none;" class="nav-link d" id="issue-doc" onclick="BoldText(this);">Uploaded Document</a></h3>
+            </div>
+                <%
+                if(userData.length!=0){
+                var i=1;
+                userData.forEach(function(data){
+                %>
+                <div class="data">
+                    <label><%=i %></label>
+                    <label style="padding-left: 25px;"><img style="width: 2%; height: 2%;" src="data:image/jpeg;base64,<%- data.docImage %>" /></label>
+                    <label style="padding-left: 25px;"><%=data.docName %></label>
+                    <label><label class="f"><a href="/viewImage/<%= data.ID %><%= i %>" target="_blank">View</a></label>
+                    <label class="check-box"><input type="checkbox" name="k" value="<%= i %>"/></label></label>
+                    
+                    <%#  This is a comment   <label><a onclick=myFunction()>click me</a></label>%>
+                    
+                    
+                    
+                </div>
+                <%  i++; }) %>
+                <% }%>
+                <br><br><input class="shareDoc" id="shareDoc" type="submit" value="Share Document's">
+        
+        </div>
+    </form>
+    <script>
+
+        var currElem = null; //will hold the element that is bold now
+
+        function BoldText(elem) 
+        {
+
+            if (elem != currElem) 
+            { //do thing if you're clicking on a bold link
+                console.log(elem);
+
+                if (currElem) //if a link bold right now unbold it
+
+                currElem.style.fontWeight='normal';
+
+                currElem = elem; //assign this element as the current one
+
+                elem.style.fontWeight='bold';  //make the element clicked bold
+
+            }
+
+        }
+
+        function myFunction() 
+        {
+            var newWin = window.open('/', 'example', 'width=800,height=600');
+        }
+
+    </script>
+</body>
+</html>
