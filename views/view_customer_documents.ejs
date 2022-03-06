@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>News - E-Doc</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link href="./../css/doc_page_style.css" rel="stylesheet" type="text/css" media="all"/>
+	<link rel="shortcut icon" href="images/E Doc Image.png" type="image/x-icon">
+</head>
+<body>
+	<div id="header">
+		<div class="clearfix">
+			<div class="logo">
+				<a href="index.html"><img src="images/E Doc Logo10.png" alt="LOGO" height="45" width="330"></a>
+			</div>
+			<ul class="navigation">
+				<li>
+					<a href="digilocker_login_page">DigiLocker</a>
+				</li>
+				<li >
+					<a href="/logout">Logout</a>
+				</li>
+			<!--	
+				<li>
+					<a href="practices.html">Practices</a>
+				</li>
+				<li>
+					<a href="lawyers.html">Our Lawyers</a>
+				</li>
+				
+				<li class="active">
+					<a href="news.html">News</a>
+					<div>
+						<a href="singlepost.html">News Single Post</a>
+					</div>
+				</li>
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+				<li>
+					<a href="sign_in.html">Sign in</a>
+					<div>
+						<a href="registration.html">New User</a>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+	</div>
+	<div id="contents">
+		<div class="clearfix">
+			<div class="sidebar">
+				<div class="boxplot">
+					<form class="message1" method="POST" action="/search_doc">
+						<h2>View Customer Document's</h2>
+						<p></p>
+						<p>
+							<label>Adhar Number *</label><br>
+							<input class="label1" type="tel" maxlength="12" onkeypress="javascript:return isNumber(event)" placeholder="Enter Adhar Number" value="" required name="adharno">
+						</p>
+						<p>
+							<input class="search_btn" type="submit" placeholder="" value="Search">
+						</p><p></p>
+					</form>
+				</div><br><br>
+				<div class="boxplot">
+					<h2>Upload Document</h2>
+					 <form class="message1" action="/uploadDoc" method="post" enctype="multipart/form-data">
+						<p>
+							<label>Adhar Number *</label><br>
+							<input class="label1" type="tel" maxlength="12" name="adhar" onkeypress="javascript:return isNumber(event)" placeholder="Enter adhar number" required><br><br>
+							<label>File Name *</label><br>
+							<input class="label1" type="text" placeholder="Enter name" name="filename" required><br><br>
+							<label>Select File *</label><br>
+							<input class="label1" type="file" placeholder="upload file" name="avatar" id="f1" value="" required>
+						
+							<input class="search_btn" type="submit" placeholder="" value="Upload">
+						</p><p></p>
+					</form> 
+				</div>
+			</div>
+			<div class="main">
+				<h1>Document's</h1>
+				<ul class="news">
+					<%
+						if(userData!=null)
+						{
+							if(userData.length!=0){
+							var i=1;
+							userData.forEach(function(data){
+							%>
+							<div class="data">
+								<label><%=i %></label>
+								<label style="padding-left: 25px;"><%=data.docName %></label>
+								
+								<label><label class="f"><a href="/viewDoc/<%= data.docImage %>" target="_blank">View</a></label>
+								
+								<%#  This is a comment   <label><a onclick=myFunction()>click me</a></label>%>
+								
+								
+								
+							</div>
+							<%  i++; }) %>
+							<% }
+						}
+						else{%><%="Please enter adhar number to view document's! / No Document's to view."%><%}
+					%>
+				<!--	<li>
+						<div class="box">
+							<img src="images/bride-sideview.jpg" alt="Img" height="245" width="213">
+						</div>
+						<p class="info">
+							31st January 2023 by <span class="author">Manes Winchester</span>
+						</p>
+						<h2>The Basics of Marriage Laws</h2>
+						<p>
+							This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
+						</p>
+						<a href="singlepost.html" class="more">Read More</a>
+					</li>
+					<li>
+						<div class="box">
+							<img src="images/happy.jpg" alt="Img" height="245" width="213">
+						</div>
+						<p class="info">
+							31st January 2023 by <span class="author">Manes Winchester</span>
+						</p>
+						<h2>Happy Newly Divorced Women</h2>
+						<p>
+							This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
+						</p>
+						<a href="singlepost.html" class="more">Read More</a>
+					</li>
+					<li>
+						<div class="box">
+							<img src="images/children.jpg" alt="Img" height="245" width="213">
+						</div>
+						<p class="info">
+							31st January 2023 by <span class="author">Manes Winchester</span>
+						</p>
+						<h2>Children &amp; Divorced Parents</h2>
+						<p>
+							This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.You can remove any link
+						</p>
+						<a href="singlepost.html" class="more">Read More</a>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="clearfix">
+			<div class="section">
+				<h4>Latest News</h4>
+				<p>
+					This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text. You can remove any link.
+				</p>
+			</div>
+			<div class="section contact">
+				<h4>Contact Us</h4>
+				<p>
+					<span>Address:</span> the address city, state 1111
+				</p>
+				<p>
+					<span>Phone:</span> (+20) 000 222 999
+				</p>
+				<p>
+					<span>Email:</span> info@freewebsitetemplates.com
+				</p>
+			</div>
+			<div class="section">
+				<h4>SEND US A MESSAGE</h4>
+				<p>
+					If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
+				</p>
+				<a href="http://www.freewebsitetemplates.com/misc/contact/" class="subscribe">Click to send us an email</a>
+			</div>
+		</div>
+		<div id="footnote">
+			<div class="clearfix">
+				<div class="connect">
+					<a href="http://freewebsitetemplates.com/go/facebook/" class="facebook"></a><a href="http://freewebsitetemplates.com/go/twitter/" class="twitter"></a><a href="http://freewebsitetemplates.com/go/googleplus/" class="googleplus"></a><a href="http://pinterest.com/fwtemplates/" class="pinterest"></a>
+				</div>
+				<p>
+					© Copyright 2023 Manes Winchester. All Rights Reserved.
+				</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		function isNumber(evt) {
+			var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+			if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+				return false;
+
+			return true;
+		}
+	</script>
+</body>
+</html>

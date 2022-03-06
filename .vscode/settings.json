@@ -1,0 +1,24 @@
+{
+    "terminal.integrated.allowChords": false,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "E-Doc Connection",
+            "username": "root",
+            "database": "vishal",
+            "password": ""
+        }
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "mysql-connector-java-8.0.22.jar",
+        "f:\\Java for SSD\\jre\\bin\\mysql-connector.jar",
+        "/home/vishal/SECO 7-Sem/E-Doc Transfer/**/*.jar"
+    ]
+}
